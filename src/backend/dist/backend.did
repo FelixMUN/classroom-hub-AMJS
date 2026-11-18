@@ -1,0 +1,229 @@
+type Value = 
+ variant {
+   "bool": bool;
+   float: float64;
+   "int": int;
+   "nat": nat;
+   "null";
+   "text": text;
+ };
+type UserView = 
+ record {
+   approval: ApprovalStatus;
+   className: text;
+   displayName: text;
+   "principal": UserId;
+   requestedAt: Timestamp;
+   role: Role;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UserId = principal;
+type UserApprovalInfo = 
+ record {
+   "principal": principal;
+   status: ApprovalStatus;
+ };
+type TimetableView = 
+ record {
+   endTime: Timestamp;
+   id: nat;
+   notes: text;
+   room: text;
+   startTime: Timestamp;
+   subject: text;
+ };
+type Timestamp = int;
+type Time = int;
+type SubmissionView = 
+ record {
+   adminReason: opt text;
+   assignedDate: Timestamp;
+   description: text;
+   dueDate: Timestamp;
+   id: nat;
+   kind: SubmissionKind;
+   status: RequestStatus;
+   subject: text;
+   submittedAt: Timestamp;
+   submittedBy: UserId;
+   targetHomeworkId: opt nat;
+   title: text;
+ };
+type SubmissionKind = 
+ variant {
+   editSuggestion;
+   newHomework;
+ };
+type Role = 
+ variant {
+   admin;
+   student;
+ };
+type Result__1 = 
+ variant {
+   err: Error;
+   ok;
+ };
+type Result = 
+ record {
+   hasMore: bool;
+   rows: vec vec Cell;
+ };
+type RequestStatus = 
+ variant {
+   approved;
+   pending;
+   rejected;
+ };
+type Redemption = 
+ record {
+   at: Time;
+   user: principal;
+ };
+type RedeemResult = 
+ variant {
+   alreadyMember;
+   blocked;
+   expired;
+   invalid;
+   joined;
+   revoked;
+   usedUp;
+ };
+type InviteStatus = 
+ variant {
+   expired;
+   invalid;
+   revoked;
+   usedUp;
+   valid;
+ };
+type InviteInfo = 
+ record {
+   code: text;
+   createdAt: Time;
+   createdBy: principal;
+   expiresAt: opt Time;
+   maxUses: opt nat;
+   name: text;
+   redemptions: vec Redemption;
+   revoked: bool;
+ };
+type HomeworkView = 
+ record {
+   assignedDate: Timestamp;
+   createdAt: Timestamp;
+   createdBy: UserId;
+   description: text;
+   dueDate: Timestamp;
+   id: nat;
+   subject: text;
+   title: text;
+ };
+type Error = 
+ variant {
+   AmbiguousAttribute: record {
+                         field: text;
+                         sources: vec text;
+                       };
+   FrontendOriginMismatch: record {
+                             expected: vec text;
+                             got: text;
+                           };
+   FrontendOriginsNotConfigured;
+   MalformedCandid;
+   MissingField: text;
+   MixedSsoSources: record {
+                      otherKeys: vec text;
+                      ssoKeys: vec text;
+                    };
+   NoAttributes;
+   Stale: record {ageNs: nat;};
+   UnknownNonce;
+   UntrustedSsoSource: record {domain: text;};
+ };
+type CompletionView = 
+ record {
+   completed: bool;
+   homeworkId: nat;
+   student: UserId;
+   updatedAt: Timestamp;
+ };
+type Cell = 
+ record {
+   name: text;
+   value: Value;
+ };
+type ApprovalStatus = 
+ variant {
+   approved;
+   pending;
+   rejected;
+ };
+type AnnouncementView = 
+ record {
+   body: text;
+   id: nat;
+   publishedAt: Timestamp;
+   publishedBy: UserId;
+   title: text;
+ };
+service : {
+  _initialize_access_control: () -> ();
+  _internet_identity_sign_in_finish: () -> (Result__1);
+  _internet_identity_sign_in_start: () -> (blob);
+  addHomework: (subject: text, title: text, description: text, assignedDate:
+   Timestamp, dueDate: Timestamp) -> (HomeworkView);
+  addTimetableEvent: (subject: text, startTime: Timestamp, endTime:
+   Timestamp, room: text, notes: text) -> (TimetableView);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  checkInvite: (code: text) -> (InviteStatus) query;
+  createInvite: (name: text, maxUses: opt nat, expiresAt: opt Time) -> (text);
+  deleteAnnouncement: (id: nat) -> (bool);
+  deleteHomework: (id: nat) -> (bool);
+  deleteTimetableEvent: (id: nat) -> (bool);
+  execute: (qJson: text) -> (Result) query;
+  getApiDoc: () -> (text) query;
+  getCallerProfile: () -> (opt UserView) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getHomework: (id: nat) -> (opt HomeworkView) query;
+  isCallerAdmin: () -> (bool) query;
+  isCallerApproved: () -> (bool) query;
+  listAnnouncements: () -> (vec AnnouncementView) query;
+  listApprovals: () -> (vec UserApprovalInfo) query;
+  listHomework: () -> (vec HomeworkView) query;
+  listInvites: () -> (vec InviteInfo) query;
+  listMyCompletions: () -> (vec CompletionView) query;
+  listMySubmissions: () -> (vec SubmissionView) query;
+  listSubmissions: () -> (vec SubmissionView) query;
+  listTimetableEvents: () -> (vec TimetableView) query;
+  listUsers: () -> (vec UserView) query;
+  publishAnnouncement: (title: text, body: text) -> (AnnouncementView);
+  redeemInvite: (code: text) -> (RedeemResult);
+  registerProfile: (displayName: text, className: text) -> (UserView);
+  removeApproval: (user: principal) -> ();
+  requestApproval: () -> ();
+  revokeInvite: (code: text) -> ();
+  revokeUserAccess: (user: UserId) -> ();
+  schema: () -> (text) query;
+  setApproval: (user: principal, status: ApprovalStatus) -> ();
+  setCompletion: (homeworkId: nat, completed: bool) -> (CompletionView);
+  setSubmissionStatus: (id: nat, status: RequestStatus, adminReason:
+   opt text) -> (opt SubmissionView);
+  setUserApproval: (user: UserId, approval: ApprovalStatus) -> ();
+  setUserRole: (user: UserId, role: Role) -> ();
+  submitHomework: (kind: SubmissionKind, targetHomeworkId: opt nat, subject:
+   text, title: text, description: text, assignedDate: Timestamp, dueDate:
+   Timestamp) -> (SubmissionView);
+  updateAnnouncement: (id: nat, title: text, body: text) ->
+   (opt AnnouncementView);
+  updateHomework: (id: nat, subject: text, title: text, description: 
+   text, assignedDate: Timestamp, dueDate: Timestamp) -> (opt HomeworkView);
+  updateTimetableEvent: (id: nat, subject: text, startTime: Timestamp,
+   endTime: Timestamp, room: text, notes: text) -> (opt TimetableView);
+}

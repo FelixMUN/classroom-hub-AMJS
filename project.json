@@ -1,0 +1,23 @@
+{
+  "overview": "CLASSROOM HUB is a shared class homework site where students sign in, request access, and manage homework, timetables and announcements together.",
+  "features": [
+    "Sign in with Internet Identity and request access",
+    "Admin approval of registrations with Admin and Student roles",
+    "Dashboard with welcome message, task statistics and an interactive daily timetable",
+    "Interactive month, week and day homework calendar with Daily and Subject views",
+    "Permanent homework history with search and filters",
+    "Submit homework and suggest edits with Pending, Approved and Rejected statuses",
+    "Class announcements published by the admin",
+    "Admin console for approving registrations, homework and edit suggestions",
+    "Persistent shared data with server-side permissions"
+  ],
+  "category": "education",
+  "tags": [
+    "school",
+    "homework",
+    "classroom",
+    "education",
+    "calendar"
+  ],
+  "last_updated": "2026-11-17T12:15:17.938Z"
+}

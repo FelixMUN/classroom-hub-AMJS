@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 200 800;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 100 1000;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 100 900;
+}
+
+@layer base {
+  :root {
+    --font-display: "Bricolage Grotesque", sans-serif;
+    --font-body: "DM Sans", sans-serif;
+    --font-mono: "Geist Mono", monospace;
+    --radius: 1rem;
+
+    /* Chalkboard Pop — dark-only visual system */
+    --background: 0.13 0.008 25;
+    --foreground: 0.96 0.005 90;
+    --card: 0.185 0.012 25;
+    --card-foreground: 0.96 0.005 90;
+    --popover: 0.2 0.014 25;
+    --popover-foreground: 0.96 0.005 90;
+
+    /* deep red — primary action */
+    --primary: 0.52 0.21 25;
+    --primary-foreground: 0.98 0.005 90;
+
+    /* blue — ink secondary */
+    --secondary: 0.6 0.18 250;
+    --secondary-foreground: 0.98 0.005 250;
+    --muted: 0.24 0.012 25;
+    --muted-foreground: 0.68 0.012 60;
+
+    /* bright yellow — highlighter accent */
+    --accent: 0.86 0.17 92;
+    --accent-foreground: 0.16 0.02 92;
+
+    --destructive: 0.6 0.23 22;
+    --destructive-foreground: 0.98 0.005 90;
+
+    --success: 0.72 0.16 150;
+    --success-foreground: 0.14 0.02 150;
+    --warning: 0.82 0.16 80;
+    --warning-foreground: 0.16 0.02 80;
+
+    --border: 0.3 0.014 30;
+    --input: 0.3 0.014 30;
+    --ring: 0.86 0.17 92;
+
+    --chart-1: 0.52 0.21 25;
+    --chart-2: 0.86 0.17 92;
+    --chart-3: 0.6 0.18 250;
+    --chart-4: 0.72 0.16 150;
+    --chart-5: 0.68 0.2 320;
+
+    --sidebar: 0.16 0.01 25;
+    --sidebar-foreground: 0.96 0.005 90;
+    --sidebar-primary: 0.52 0.21 25;
+    --sidebar-primary-foreground: 0.98 0.005 90;
+    --sidebar-accent: 0.24 0.012 25;
+    --sidebar-accent-foreground: 0.9 0.01 60;
+    --sidebar-border: 0.3 0.014 30;
+    --sidebar-ring: 0.86 0.17 92;
+
+    /* gradients + motion tokens */
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.52 0.21 25),
+      oklch(0.42 0.19 15)
+    );
+    --gradient-highlight: linear-gradient(
+      120deg,
+      oklch(0.86 0.17 92),
+      oklch(0.78 0.16 70)
+    );
+    --gradient-ink: linear-gradient(
+      135deg,
+      oklch(0.6 0.18 250),
+      oklch(0.48 0.17 262)
+    );
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    background-image: radial-gradient(
+        circle at 12% 8%,
+        oklch(0.52 0.21 25 / 0.14),
+        transparent 42%
+      ),
+      radial-gradient(
+        circle at 88% 92%,
+        oklch(0.6 0.18 250 / 0.12),
+        transparent 45%
+      );
+    background-attachment: fixed;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  .text-gradient-highlight {
+    background: var(--gradient-highlight);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-gradient-primary {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* highlighter-marker signature underline */
+  .marker-underline {
+    position: relative;
+    display: inline-block;
+  }
+  .marker-underline::after {
+    content: "";
+    position: absolute;
+    left: -0.1em;
+    right: -0.1em;
+    bottom: 0.06em;
+    height: 0.34em;
+    background: var(--gradient-highlight);
+    opacity: 0.85;
+    border-radius: 9999px;
+    transform: rotate(-1deg);
+    z-index: -1;
+  }
+
+  .bg-gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+  .bg-gradient-ink {
+    background-image: var(--gradient-ink);
+  }
+  .bg-gradient-highlight {
+    background-image: var(--gradient-highlight);
+  }
+
+  .card-hover {
+    transition: var(--transition-smooth);
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px -10px oklch(0.52 0.21 25 / 0.45), 0 0 0 1px
+      oklch(0.86 0.17 92 / 0.35);
+  }
+
+  .chalk-doodle {
+    background-image: radial-gradient(
+      oklch(0.96 0.005 90 / 0.06) 1px,
+      transparent 1px
+    );
+    background-size: 22px 22px;
+  }
+}
