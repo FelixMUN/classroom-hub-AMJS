@@ -78,11 +78,11 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       boxShadow: {
-        xs: "0 1px 2px 0 rgba(0,0,0,0.05)",
-        subtle: "0 1px 3px 0 oklch(0.13 0.008 25 / 0.5), 0 1px 2px -1px oklch(0.13 0.008 25 / 0.4)",
+        xs: "0 1px 2px 0 oklch(0.2189 0.0448 289 / 0.4)",
+        subtle: "0 1px 3px 0 oklch(0.2189 0.0448 289 / 0.5), 0 1px 2px -1px oklch(0.2189 0.0448 289 / 0.4)",
         elevated:
-          "0 10px 30px -12px oklch(0.13 0.008 25 / 0.7), 0 4px 12px -6px oklch(0.13 0.008 25 / 0.5)",
-        highlight: "0 8px 24px -10px oklch(0.86 0.17 92 / 0.4)",
+          "0 10px 30px -12px oklch(0.2189 0.0448 289 / 0.7), 0 4px 12px -6px oklch(0.2189 0.0448 289 / 0.5)",
+        highlight: "0 8px 24px -10px oklch(0.8594 0.2581 84 / 0.35)",
       },
       keyframes: {
         "accordion-down": {

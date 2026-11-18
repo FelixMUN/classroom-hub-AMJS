@@ -30,70 +30,83 @@
     --font-mono: "Geist Mono", monospace;
     --radius: 1rem;
 
-    /* Chalkboard Pop — dark-only visual system */
-    --background: 0.13 0.008 25;
-    --foreground: 0.96 0.005 90;
-    --card: 0.185 0.012 25;
-    --card-foreground: 0.96 0.005 90;
-    --popover: 0.2 0.014 25;
-    --popover-foreground: 0.96 0.005 90;
+    /* Deep Blue Night — dark-blue visual system */
+    /* background: deep blue #18283A */
+    --background: 0.2769 0.0548 287;
+    /* foreground: warm chalk #E9E5D8 */
+    --foreground: 0.9357 0.0476 17;
+    /* card: slate blue #263A50 */
+    --card: 0.3482 0.0642 287;
+    --card-foreground: 0.9357 0.0476 17;
+    /* popover: slightly lighter slate */
+    --popover: 0.3679 0.0688 288;
+    --popover-foreground: 0.9357 0.0476 17;
 
-    /* deep red — primary action */
-    --primary: 0.52 0.21 25;
-    --primary-foreground: 0.98 0.005 90;
+    /* gel-ink blue #244D85 — primary interactive */
+    --primary: 0.4297 0.1419 290;
+    --primary-foreground: 0.9357 0.0476 17;
 
-    /* blue — ink secondary */
-    --secondary: 0.6 0.18 250;
-    --secondary-foreground: 0.98 0.005 250;
-    --muted: 0.24 0.012 25;
-    --muted-foreground: 0.68 0.012 60;
+    /* blue secondary — lighter gel-ink for secondary surfaces */
+    --secondary: 0.5420 0.1769 291;
+    --secondary-foreground: 0.9357 0.0476 17;
 
-    /* bright yellow — highlighter accent */
-    --accent: 0.86 0.17 92;
-    --accent-foreground: 0.16 0.02 92;
+    /* muted: darker slate for subdued panels */
+    --muted: 0.2189 0.0448 289;
+    /* muted-foreground: muted blue-grey text */
+    --muted-foreground: 0.6989 0.0569 303;
 
-    --destructive: 0.6 0.23 22;
-    --destructive-foreground: 0.98 0.005 90;
+    /* solid yellow #EFCB35 — highlight accent */
+    --accent: 0.8594 0.2581 84;
+    --accent-foreground: 0.16 0.02 84;
 
-    --success: 0.72 0.16 150;
-    --success-foreground: 0.14 0.02 150;
-    --warning: 0.82 0.16 80;
-    --warning-foreground: 0.16 0.02 80;
+    /* faded leather crimson #914B52 — destructive/warnings */
+    --destructive: 0.5077 0.1204 14;
+    --destructive-foreground: 0.9357 0.0476 17;
 
-    --border: 0.3 0.014 30;
-    --input: 0.3 0.014 30;
-    --ring: 0.86 0.17 92;
+    --success: 0.5991 0.0901 128;
+    --success-foreground: 0.9357 0.0476 17;
+    --warning: 0.8594 0.2581 84;
+    --warning-foreground: 0.16 0.02 84;
 
-    --chart-1: 0.52 0.21 25;
-    --chart-2: 0.86 0.17 92;
-    --chart-3: 0.6 0.18 250;
-    --chart-4: 0.72 0.16 150;
-    --chart-5: 0.68 0.2 320;
+    --border: 0.4313 0.0753 288;
+    --input: 0.4313 0.0753 288;
+    --ring: 0.8594 0.2581 84;
 
-    --sidebar: 0.16 0.01 25;
-    --sidebar-foreground: 0.96 0.005 90;
-    --sidebar-primary: 0.52 0.21 25;
-    --sidebar-primary-foreground: 0.98 0.005 90;
-    --sidebar-accent: 0.24 0.012 25;
-    --sidebar-accent-foreground: 0.9 0.01 60;
-    --sidebar-border: 0.3 0.014 30;
-    --sidebar-ring: 0.86 0.17 92;
+    --chart-1: 0.4297 0.1419 290;
+    --chart-2: 0.8594 0.2581 84;
+    --chart-3: 0.5077 0.1204 14;
+    --chart-4: 0.5991 0.0901 128;
+    --chart-5: 0.5420 0.1769 291;
+
+    --sidebar: 0.2189 0.0448 289;
+    --sidebar-foreground: 0.9357 0.0476 17;
+    --sidebar-primary: 0.4297 0.1419 290;
+    --sidebar-primary-foreground: 0.9357 0.0476 17;
+    --sidebar-accent: 0.3482 0.0642 287;
+    --sidebar-accent-foreground: 0.9357 0.0476 17;
+    --sidebar-border: 0.4313 0.0753 288;
+    --sidebar-ring: 0.8594 0.2581 84;
 
     /* gradients + motion tokens */
     --gradient-primary: linear-gradient(
       135deg,
-      oklch(0.52 0.21 25),
-      oklch(0.42 0.19 15)
+      oklch(0.5420 0.1769 291),
+      oklch(0.4297 0.1419 290)
     );
     --gradient-highlight: linear-gradient(
       120deg,
-      oklch(0.86 0.17 92),
-      oklch(0.78 0.16 70)
+      oklch(0.8594 0.2581 84),
+      oklch(0.7811 0.2389 84)
+    );
+    --gradient-crimson: linear-gradient(
+      135deg,
+      oklch(0.5714 0.1300 14),
+      oklch(0.5077 0.1204 14)
     );
     --gradient-ink: linear-gradient(
       135deg,
-      oklch(0.6 0.18 250),
-      oklch(0.48 0.17 262)
+      oklch(0.5420 0.1769 291),
+      oklch(0.4297 0.1419 290)
     );
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -105,12 +118,12 @@
     @apply bg-background text-foreground font-body antialiased;
     background-image: radial-gradient(
         circle at 12% 8%,
-        oklch(0.52 0.21 25 / 0.14),
+        oklch(0.4297 0.1419 290 / 0.16),
         transparent 42%
       ),
       radial-gradient(
         circle at 88% 92%,
-        oklch(0.6 0.18 250 / 0.12),
+        oklch(0.5077 0.1204 14 / 0.10),
         transparent 45%
       );
     background-attachment: fixed;
@@ -164,19 +177,22 @@
   .bg-gradient-highlight {
     background-image: var(--gradient-highlight);
   }
+  .bg-gradient-crimson {
+    background-image: var(--gradient-crimson);
+  }
 
   .card-hover {
     transition: var(--transition-smooth);
   }
   .card-hover:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 28px -10px oklch(0.52 0.21 25 / 0.45), 0 0 0 1px
-      oklch(0.86 0.17 92 / 0.35);
+    box-shadow: 0 12px 28px -10px oklch(0.4297 0.1419 290 / 0.45), 0 0 0 1px
+      oklch(0.8594 0.2581 84 / 0.35);
   }
 
   .chalk-doodle {
     background-image: radial-gradient(
-      oklch(0.96 0.005 90 / 0.06) 1px,
+      oklch(0.9357 0.0476 17 / 0.06) 1px,
       transparent 1px
     );
     background-size: 22px 22px;
